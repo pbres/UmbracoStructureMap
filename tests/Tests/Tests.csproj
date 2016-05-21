@@ -273,6 +273,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllersTests\SurfaceSampleTest.cs" />
     <Compile Include="ControllersTests\ControllerSampleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ControllersTests\ApiControllerSampleTest.cs" />
