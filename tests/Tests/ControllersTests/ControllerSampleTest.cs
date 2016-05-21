@@ -43,8 +43,6 @@ namespace Tests.ControllersTests
             A.CallTo(() => _publishedContent.Id).Returns(1234);
             A.CallTo(() => _publishedContent.Name).Returns("Test");
 
-            A.CallTo(() => _publishedContent.GetPropertyValue<string>("testProperty")).Returns("testValue");
-
             var fakeViewEngine = A.Fake<IViewEngine>();
             A.CallTo(() => fakeViewEngine.FindView(null, null, null, false))
                 .WithAnyArguments()
@@ -86,7 +84,6 @@ namespace Tests.ControllersTests
 
             var result = controller.ViewData["sampleData"];
 
-            Assert.Equal("testValue", _publishedContent.GetPropertyValue("testProperty"));
             Assert.Equal(new string[] { "test data 1", "test data 2" }, result);
         }
     }
