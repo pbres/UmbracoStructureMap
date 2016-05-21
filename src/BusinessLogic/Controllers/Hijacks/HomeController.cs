@@ -24,6 +24,7 @@ namespace MyBusinessLogic.Controllers.Hijacks
 
         public ActionResult SampleAction()
         {
+            var currentPage = CurrentPage;
             ViewData["sampleData"] = _sampleService.SampleData;
             return View("SampleView");
         }

@@ -64,9 +64,19 @@ namespace Tests.ControllersTests
                 A.Fake<IUmbracoSettingsSection>(),
                 Enumerable.Empty<IUrlProvider>(), true);
 
+            var webRoutingSection = A.Fake<IWebRoutingSection>();
+            A.CallTo(() => webRoutingSection.UrlProviderMode).Returns(UrlProviderMode.AutoLegacy.ToString());
+            _ctx.PublishedContentRequest = new PublishedContentRequest(new Uri("http://test.com"), _ctx.RoutingContext,
+                webRoutingSection,
+                s => new string[] { })
+                    {
+                        PublishedContent = _publishedContent
+                    };
+
             _routeData = new RouteData();
             _routeData.Values.Add("action", "Home");
             _routeData.Values.Add("controller", "Home");
+            _routeData.DataTokens.Add(Umbraco.Core.Constants.Web.PublishedDocumentRequestDataToken, _ctx.PublishedContentRequest);
         }
 
         [Fact]
@@ -81,6 +91,25 @@ namespace Tests.ControllersTests
 
             var render_model = new RenderModel(_publishedContent, CultureInfo.InvariantCulture);
             controller.Index(render_model);
+
+            var result = controller.ViewData["sampleData"];
+
+            Assert.Equal(new string[] { "test data 1", "test data 2" }, result);
+        }
+
+        [Fact]
+        public void homeController_sampleAction_action_has_sampleData_in_viewData()
+        {
+            var controller = new HomeController(_sampleService);
+
+
+
+            //Setting the controller context will provide the route data, route def, publushed content request, and current page to the surface controller
+            controller.ControllerContext = new System.Web.Mvc.ControllerContext(_ctx.HttpContext, _routeData, controller);
+
+            A.CallTo(() => _sampleService.SampleData).Returns(new[] { "test data 1", "test data 2" });
+
+            controller.SampleAction();
 
             var result = controller.ViewData["sampleData"];
 
