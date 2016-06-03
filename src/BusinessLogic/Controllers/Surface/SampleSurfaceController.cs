@@ -9,11 +9,11 @@ using Umbraco.Web.Mvc;
 
 namespace MyBusinessLogic.Controllers.Surface
 {
-    public class  SampleSurfaceControlle : SurfaceController
+    public class  SampleSurfaceController : SurfaceController
     {
         private readonly ISampleService _sampleService;
 
-        public SampleSurfaceControlle(ISampleService sampleService)
+        public SampleSurfaceController(ISampleService sampleService)
         {
             _sampleService = sampleService;
         }

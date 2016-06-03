@@ -276,7 +276,7 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="Controllers\API\SampleApiController.cs" />
     <Compile Include="Controllers\Hijacks\HomeController.cs" />
-    <Compile Include="Controllers\Surface\SampleSurfaceControlle.cs" />
+    <Compile Include="Controllers\Surface\SampleSurfaceController.cs" />
     <Compile Include="Core\Helpers\ControllersHelper.cs" />
     <Compile Include="Core\Services\ISampleService.cs" />
     <Compile Include="Core\Services\SampleService.cs" />

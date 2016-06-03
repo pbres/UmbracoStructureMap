@@ -78,7 +78,7 @@ namespace Tests.ControllersTests
         [Fact]
         public void sampleSurface_controller_sampleSurface_action_has_sampleData_in_viewData()
         {
-            var surface_controller = new SampleSurfaceControlle(_sampleService);
+            var surface_controller = new SampleSurfaceController(_sampleService);
             surface_controller.ControllerContext = new System.Web.Mvc.ControllerContext(_ctx.HttpContext, _routeData, surface_controller);
 
             A.CallTo(() => _sampleService.SampleData).Returns(new[] { "test data 1", "test data 2" });
